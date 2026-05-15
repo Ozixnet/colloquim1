@@ -1,0 +1,5 @@
+# Скопируйте в gradle.properties и подставьте свои значения.
+# Файл gradle.properties не должен попадать в git (уже в .gitignore).
+
+gpr.user=
+gpr.key=

@@ -1,0 +1,17 @@
+{
+  "_comment": "Лес (true): одна вершина id=1, рёбер нет (одиночное дерево).",
+  "edgeCount": 0,
+  "edgeList": [],
+  "isDirect": true,
+  "vertexCount": 1,
+  "vertexList": [
+    {
+      "color": "GRAY",
+      "id": 1,
+      "label": "1",
+      "weight": 0,
+      "xCoordinate": 0,
+      "yCoordinate": 0
+    }
+  ]
+}

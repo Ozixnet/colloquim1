@@ -1,0 +1,8 @@
+{
+  "_comment": "Пустой граф: 0 вершин, 0 рёбер. Лес? → true (по договорённости модуля).",
+  "edgeCount": 0,
+  "edgeList": [],
+  "isDirect": true,
+  "vertexCount": 0,
+  "vertexList": []
+}

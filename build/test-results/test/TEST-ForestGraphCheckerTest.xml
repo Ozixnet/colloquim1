@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ForestGraphCheckerTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-05-15T14:26:31" hostname="DESKTOP-JOEI4FM" time="0.724">
+  <properties/>
+  <testcase name="forest_single_vertex.json — одна вершина без рёбер → дерево (true)" classname="ForestGraphCheckerTest" time="0.703"/>
+  <testcase name="forest_false_cycle.json — треугольник 1–2–3–1 → не лес (false)" classname="ForestGraphCheckerTest" time="0.003"/>
+  <testcase name="forest_true_chain.json — цепочка 1–2–3–4, одно дерево → лес (true)" classname="ForestGraphCheckerTest" time="0.002"/>
+  <testcase name="forest_empty.json — пустой граф → true по договорённости проверки" classname="ForestGraphCheckerTest" time="0.002"/>
+  <testcase name="forest_true.json — две компоненты (ребра 1–2 и 3–4), без цикла → лес (true)" classname="ForestGraphCheckerTest" time="0.003"/>
+  <testcase name="forest_false_selfloop.json — петля (1→1) → не лес (false)" classname="ForestGraphCheckerTest" time="0.002"/>
+  <testcase name="site_export_with_cycle.json — выгрузка с WiseTask, цикл → false" classname="ForestGraphCheckerTest" time="0.004"/>
+  <system-out><![CDATA[
+── Тест: forest_single_vertex.json
+   Граф: Одиночная вершина id=1, edgeCount=0.
+   run(Graph) = true (ожидалось true)
+   ✓ утверждение выполнено
+
+── Тест: forest_false_cycle.json
+   Граф: Простой цикл из трёх вершин.
+   run(Graph) = false (ожидалось false)
+   ✓ утверждение выполнено
+
+── Тест: forest_true_chain.json
+   Граф: Путь из четырёх вершин, три ребра, без циклов.
+   run(Graph) = true (ожидалось true)
+   ✓ утверждение выполнено
+
+── Тест: forest_empty.json
+   Граф: Нет вершин и рёбер.
+   run(Graph) = true (ожидалось true)
+   ✓ утверждение выполнено
+
+── Тест: forest_true.json
+   Граф: Две изолированные пары вершин, лес из двух деревьев.
+   run(Graph) = true (ожидалось true)
+   ✓ утверждение выполнено
+
+── Тест: forest_false_selfloop.json
+   Граф: Одна вершина с ребром source=target=1.
+   run(Graph) = false (ожидалось false)
+   ✓ утверждение выполнено
+
+── Тест: site_export_with_cycle.json
+   Граф: JSON как с сайта («скачать json»), в графе есть цикл.
+   run(Graph) = false (ожидалось false)
+   ✓ утверждение выполнено
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,81 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'collocv'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    /* По инструкции WiseTask: раскомментируйте и задайте GPR_USER / GPR_KEY в gradle.properties,
+       затем удалите вендорные исходники ru/leti/wise/task из src/main/java и раскомментируйте зависимость ниже.
+    maven {
+        name = 'GitHubTerrossWiseTask'
+        url = uri('https://maven.pkg.github.com/Terross/wise-task-library')
+        credentials {
+            username = project.findProperty('gpr.user') ?: System.getenv('GPR_USER') ?: ''
+            password = project.findProperty('gpr.key') ?: System.getenv('GPR_KEY') ?: ''
+        }
+    }
+    */
+}
+
+dependencies {
+    /* implementation 'ru.leti:wise-task-library:1.0.7' — когда настроен GitHub Packages */
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+test {
+    useJUnitPlatform()
+    // Иначе при повторном ./gradlew test задача UP-TO-DATE и в терминале нет вывода тестов
+    outputs.upToDateWhen { false }
+    // PASSED — зелёные строки в терминале Gradle; started не включаем, чтобы не было тройного заголовка.
+    testLogging {
+        events 'passed', 'standard_out', 'standard_error', 'failed'
+        showStandardStreams = true
+        showExceptions = true
+        exceptionFormat = 'full'
+    }
+}
+
+jar {
+    archiveBaseName = 'forest-graph-checker'
+    manifest {
+        attributes(
+                'Implementation-Title': 'ForestGraphChecker',
+                'Implementation-Version': archiveVersion,
+        )
+    }
+}
+
+jacoco {
+    toolVersion = '0.8.11'
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}

@@ -1,0 +1,4 @@
+Исходники пакета ru.leti.wise.task скопированы из репозитория Terross:
+https://github.com/Terross/wise-task-library
+
+Файл JsonParser.java изменён локально (см. комментарии в коде).
